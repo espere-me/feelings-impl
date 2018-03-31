@@ -1,0 +1,28 @@
+plugins {
+    id 'java-library'
+}
+
+repositories {
+    jcenter()
+
+    flatDir {
+        dirs 'lib'
+    }
+}
+
+dependencies {
+    compileOnly name: 'feelings-spec-0.0.1'
+    testImplementation name: 'feelings-spec-0.0.1'
+
+    implementation group: 'org.apache.commons', name: 'commons-csv', version: '1.4'
+
+    implementation group: 'edu.stanford.nlp', name: 'stanford-corenlp', version: '3.8.0'
+
+    testImplementation 'junit:junit:4.12'
+    testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.9.1'
+    testImplementation group: 'org.mockito', name: 'mockito-core', version: '2.16.0'
+}
+
+jar {
+    version '0.0.1'
+}
