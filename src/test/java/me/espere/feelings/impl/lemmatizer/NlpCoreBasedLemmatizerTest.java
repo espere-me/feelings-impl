@@ -1,4 +1,4 @@
-package solutions.moot.feelings.impl.lemmatizer;
+package me.espere.feelings.impl.lemmatizer;
 
 import org.junit.Before;
 import org.junit.Test;

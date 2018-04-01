@@ -1,7 +1,7 @@
-package solutions.moot.feelings.impl.lemmatizer;
+package me.espere.feelings.impl.lemmatizer;
 
 import edu.stanford.nlp.simple.Sentence;
-import solutions.moot.feelings.spec.lemmatizer.Lemmatizer;
+import me.espere.feelings.spec.lemmatizer.Lemmatizer;
 
 import java.util.Collection;
 import java.util.Properties;

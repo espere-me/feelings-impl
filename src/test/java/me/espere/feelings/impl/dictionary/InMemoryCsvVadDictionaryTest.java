@@ -1,14 +1,14 @@
-package solutions.moot.feelings.impl.dictionary;
+package me.espere.feelings.impl.dictionary;
 
+import me.espere.feelings.impl.commons.Conditions;
+import me.espere.feelings.spec.dictionary.VadEntry;
+import me.espere.feelings.spec.dictionary.VadValue;
 import org.junit.Before;
 import org.junit.Test;
-import solutions.moot.feelings.spec.dictionary.VadEntry;
-import solutions.moot.feelings.spec.dictionary.VadValue;
 
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static solutions.moot.feelings.impl.commons.Conditions.equalTo;
 
 public class InMemoryCsvVadDictionaryTest {
     private InMemoryCsvVadDictionary dictionary;
@@ -29,9 +29,9 @@ public class InMemoryCsvVadDictionaryTest {
         assertThat(entry.getWord()).isEqualToIgnoringCase("abnormal");
 
         VadValue vadValue = entry.getVadValue();
-        assertThat(vadValue.getValence()).is(equalTo(3.53));
-        assertThat(vadValue.getArousal()).is(equalTo(4.48));
-        assertThat(vadValue.getDominance()).is(equalTo(4.70));
+        assertThat(vadValue.getValence()).is(Conditions.equalTo(3.53));
+        assertThat(vadValue.getArousal()).is(Conditions.equalTo(4.48));
+        assertThat(vadValue.getDominance()).is(Conditions.equalTo(4.70));
     }
 
     @Test
