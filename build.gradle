@@ -17,7 +17,9 @@ dependencies {
 
     implementation group: 'org.apache.commons', name: 'commons-csv', version: '1.4'
 
-    implementation group: 'edu.stanford.nlp', name: 'stanford-corenlp', version: '3.8.0'
+    implementation(group: 'edu.stanford.nlp', name: 'stanford-corenlp', version: '3.8.0') {
+        exclude module: 'javax.servlet-api'
+    }
 
     testImplementation group: 'me.espere.feelings', name: 'feelings-spec', version: 'v0.0.1'
     testImplementation 'junit:junit:4.12'
@@ -25,7 +27,7 @@ dependencies {
     testImplementation group: 'org.mockito', name: 'mockito-core', version: '2.16.0'
 }
 
-version 'v0.0.1'
+version 'v0.0.2'
 
 publishing {
     publications {
@@ -49,7 +51,7 @@ bintray {
         userOrg = 'espere-me'
 
         version {
-            name = 'v0.0.1'
+            name = 'v0.0.2'
         }
     }
 
