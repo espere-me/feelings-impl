@@ -1,5 +1,6 @@
 package me.espere.feelings.impl.lemmatizer;
 
+import me.espere.feelings.spec.lemmatizer.Lemma;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,7 +18,12 @@ public class NlpCoreBasedLemmatizerTest {
 
     @Test
     public void shouldLemmatizeSentence() {
-        Collection<String> lemmas = lemmatizer.lemmas("Our deliveries are consistent");
-        assertThat(lemmas).contains("we", "delivery", "be", "consistent");
+        Collection<Lemma> lemmas = lemmatizer.lemmas("Our deliveries are consistent");
+        assertThat(lemmas).contains(
+                new Lemma("Our", "we"),
+                new Lemma("are", "be"),
+                new Lemma("deliveries", "delivery"),
+                new Lemma("consistent", "consistent")
+        );
     }
 }
