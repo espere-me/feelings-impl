@@ -1,8 +1,8 @@
 package me.espere.feelings.impl.dictionary;
 
-import me.espere.feelings.spec.dictionary.VadDictionary;
-import me.espere.feelings.spec.dictionary.VadEntry;
-import me.espere.feelings.spec.dictionary.VadValue;
+import me.espere.feelings.spec.VadValue;
+import me.espere.feelings.spec.dictionary.Dictionary;
+import me.espere.feelings.spec.dictionary.Entry;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 
@@ -16,7 +16,7 @@ import java.util.Optional;
 
 import static java.util.stream.Collectors.toList;
 
-public class InMemoryCsvVadDictionary implements VadDictionary {
+public class InMemoryCsvVadDictionary implements Dictionary {
     private static final String DEFAULT_VAD_DICTIONARY_CSV = "vad-dictionary.csv";
 
     private static final int HEADER_RECORD_NUMBER = 1;
@@ -26,7 +26,7 @@ public class InMemoryCsvVadDictionary implements VadDictionary {
     private static final int AROUSAL_RECORD_INDEX = 5;
     private static final int DOMINANCE_RECORD_INDEX = 8;
 
-    private Collection<VadEntry> entries;
+    private Collection<Entry> entries;
 
     public InMemoryCsvVadDictionary() throws IOException {
         loadEntries(DEFAULT_VAD_DICTIONARY_CSV);
@@ -55,18 +55,9 @@ public class InMemoryCsvVadDictionary implements VadDictionary {
                             new BigDecimal(record.get(DOMINANCE_RECORD_INDEX))
                     );
 
-                    return new VadEntry(word, vadValue);
+                    return new Entry(word, vadValue);
                 })
                 .collect(toList());
-    }
-
-    @Override
-    public Optional<VadEntry> getEntry(String word) {
-        return entries
-                .stream()
-                .filter(entry ->
-                        entry.getWord().equalsIgnoreCase(word))
-                .findFirst();
     }
 
     private InputStreamReader loadFileIntoReader(String dictionaryResourceName) {
@@ -76,5 +67,23 @@ public class InMemoryCsvVadDictionary implements VadDictionary {
                         .getResourceAsStream(dictionaryResourceName);
 
         return new InputStreamReader(inputStream);
+    }
+
+    @Override
+    public Optional<Entry> getEntry(String word) {
+        return entries
+                .stream()
+                .filter(entry ->
+                        entry.getWord().equalsIgnoreCase(word))
+                .findFirst();
+    }
+
+    @Override
+    public VadValue getMeanVadValue() {
+        return new VadValue(
+                BigDecimal.valueOf(5.06),
+                BigDecimal.valueOf(4.21),
+                BigDecimal.valueOf(5.18)
+        );
     }
 }

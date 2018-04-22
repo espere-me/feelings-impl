@@ -13,7 +13,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly group: 'me.espere.feelings', name: 'feelings-spec', version: 'v0.0.2'
+    compileOnly group: 'me.espere.feelings', name: 'feelings-spec', version: 'v0.0.3'
 
     implementation group: 'org.apache.commons', name: 'commons-csv', version: '1.4'
 
@@ -21,7 +21,7 @@ dependencies {
         exclude module: 'javax.servlet-api'
     }
 
-    testImplementation group: 'me.espere.feelings', name: 'feelings-spec', version: 'v0.0.2'
+    testImplementation group: 'me.espere.feelings', name: 'feelings-spec', version: 'v0.0.3'
     testImplementation 'junit:junit:4.12'
     testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.9.1'
     testImplementation group: 'org.mockito', name: 'mockito-core', version: '2.16.0'
