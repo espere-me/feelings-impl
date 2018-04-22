@@ -49,4 +49,22 @@ public class InMemoryCsvVadDictionaryTest {
         assertThat(meanVadValue.getArousal()).is(equalTo(4.21));
         assertThat(meanVadValue.getDominance()).is(equalTo(5.18));
     }
+
+    @Test
+    public void shouldReturnDictionaryMinVadValue() {
+        VadValue meanVadValue = dictionary.getMinVadValue();
+
+        assertThat(meanVadValue.getValence()).is(equalTo(1.26));
+        assertThat(meanVadValue.getArousal()).is(equalTo(1.60));
+        assertThat(meanVadValue.getDominance()).is(equalTo(1.68));
+    }
+
+    @Test
+    public void shouldReturnDictionaryMaxVadValue() {
+        VadValue meanVadValue = dictionary.getMaxVadValue();
+
+        assertThat(meanVadValue.getValence()).is(equalTo(8.53));
+        assertThat(meanVadValue.getArousal()).is(equalTo(7.79));
+        assertThat(meanVadValue.getDominance()).is(equalTo(7.90));
+    }
 }

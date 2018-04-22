@@ -86,4 +86,22 @@ public class InMemoryCsvVadDictionary implements Dictionary {
                 BigDecimal.valueOf(5.18)
         );
     }
+
+    @Override
+    public VadValue getMinVadValue() {
+        return new VadValue(
+                BigDecimal.valueOf(1.26),
+                BigDecimal.valueOf(1.60),
+                BigDecimal.valueOf(1.68)
+        );
+    }
+
+    @Override
+    public VadValue getMaxVadValue() {
+        return new VadValue(
+                BigDecimal.valueOf(8.53),
+                BigDecimal.valueOf(7.79),
+                BigDecimal.valueOf(7.90)
+        );
+    }
 }
