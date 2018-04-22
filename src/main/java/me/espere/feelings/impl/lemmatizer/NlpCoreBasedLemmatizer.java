@@ -18,12 +18,12 @@ import static java.util.stream.Collectors.toList;
 
 public class NlpCoreBasedLemmatizer implements Lemmatizer {
     @Override
-    public Collection<Lemma> lemmas(String sentence) {
+    public Collection<Lemma> lemmas(String text) {
         StanfordCoreNLP pipeline = buildStanfordCoreNlpPipeline();
 
-        Annotation annotatedDocument = pipeline.process(sentence);
+        Annotation annotatedDocument = pipeline.process(text);
 
-        return getSentenceStream(annotatedDocument)
+        return getTextStream(annotatedDocument)
                 .flatMap(toTokensStream())
                 .map(token -> new Lemma(
                         token.word(),
@@ -40,7 +40,7 @@ public class NlpCoreBasedLemmatizer implements Lemmatizer {
         return new StanfordCoreNLP(configuration);
     }
 
-    private Stream<CoreMap> getSentenceStream(Annotation annotation) {
+    private Stream<CoreMap> getTextStream(Annotation annotation) {
         return annotation.get(SentencesAnnotation.class).stream();
     }
 

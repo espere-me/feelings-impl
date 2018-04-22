@@ -17,7 +17,7 @@ public class NlpCoreBasedLemmatizerTest {
     }
 
     @Test
-    public void shouldLemmatizeSentence() {
+    public void shouldLemmatizeText() {
         Collection<Lemma> lemmas = lemmatizer.lemmas("Our deliveries are consistent");
         assertThat(lemmas).contains(
                 new Lemma("Our", "we"),
