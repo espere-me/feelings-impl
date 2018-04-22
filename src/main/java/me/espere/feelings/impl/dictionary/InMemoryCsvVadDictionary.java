@@ -17,6 +17,8 @@ import java.util.Optional;
 import static java.util.stream.Collectors.toList;
 
 public class InMemoryCsvVadDictionary implements VadDictionary {
+    private static final String DEFAULT_VAD_DICTIONARY_CSV = "vad-dictionary.csv";
+
     private static final int HEADER_RECORD_NUMBER = 1;
 
     private static final int WORD_RECORD_INDEX = 1;
@@ -26,7 +28,15 @@ public class InMemoryCsvVadDictionary implements VadDictionary {
 
     private Collection<VadEntry> entries;
 
+    public InMemoryCsvVadDictionary() throws IOException {
+        loadEntries(DEFAULT_VAD_DICTIONARY_CSV);
+    }
+
     public InMemoryCsvVadDictionary(String dictionaryResourceName) throws IOException {
+        loadEntries(dictionaryResourceName);
+    }
+
+    private void loadEntries(String dictionaryResourceName) throws IOException {
         Reader reader = loadFileIntoReader(dictionaryResourceName);
 
         CSVParser csvParser = CSVFormat.DEFAULT.parse(reader);
