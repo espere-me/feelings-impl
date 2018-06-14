@@ -17,10 +17,14 @@ import java.util.stream.Stream;
 import static java.util.stream.Collectors.toList;
 
 public class NlpCoreBasedLemmatizer implements Lemmatizer {
+    private StanfordCoreNLP pipeline;
+
+    public NlpCoreBasedLemmatizer() {
+        pipeline = buildStanfordCoreNlpPipeline();
+    }
+
     @Override
     public Collection<Lemma> lemmas(String text) {
-        StanfordCoreNLP pipeline = buildStanfordCoreNlpPipeline();
-
         Annotation annotatedDocument = pipeline.process(text);
 
         return getTextStream(annotatedDocument)
